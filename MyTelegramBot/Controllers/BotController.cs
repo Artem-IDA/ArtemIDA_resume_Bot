@@ -13,7 +13,6 @@ namespace MyTelegramBot.Controllers
     [Route("/")]
     public class BotController : Controller
     {
-        //private readonly TelegramBotClient client = new TelegramBotClient("1283606192:AAGi-nstALp5oLHm5LBUJwGCKDlgTqZNmvQ");
         [HttpPost]
         public async Task<StatusCodeResult> Post([FromBody]Update update)
         {
@@ -25,10 +24,10 @@ namespace MyTelegramBot.Controllers
             {
                 return StatusCode(414);               //Дурень! Ты опять на те же грабли наступаешь? Бот не инициализирован, как и его поля!!!
             }
-            var message = update.Message;
-            if (message?.Type == MessageType.Text)
+
+            if (update.Message.Type == MessageType.Text)
             {
-                await Bot.Client.SendTextMessageAsync(message.Chat.Id, message.Text);
+                await Bot.Client.SendTextMessageAsync(update.Message.Chat.Id, update.Message.Text);
             }
             return StatusCode(200);                   //GG, все прошло гладко!
         }
