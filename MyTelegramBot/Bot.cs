@@ -6,7 +6,7 @@ using Telegram.Bot;
 
 namespace MyTelegramBot
 {
-    public class Bot
+    public static class Bot
     {
         public static string Name = "@ArtemIDA_resume_Bot";
 
@@ -16,7 +16,7 @@ namespace MyTelegramBot
         
         public static TelegramBotClient Client;
 
-        public Bot()
+        public static void Startup()
         {
             Client = new TelegramBotClient(Token);
             Client.SetWebhookAsync(WebHookUrl).Wait();

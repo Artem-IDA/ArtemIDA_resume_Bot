@@ -13,24 +13,30 @@ namespace MyTelegramBot.Controllers
     [Route("/")]
     public class BotController : Controller
     {
-        private readonly TelegramBotClient client = new TelegramBotClient("1283606192:AAGi-nstALp5oLHm5LBUJwGCKDlgTqZNmvQ");
+        //private readonly TelegramBotClient client = new TelegramBotClient("1283606192:AAGi-nstALp5oLHm5LBUJwGCKDlgTqZNmvQ");
         [HttpPost]
-        public async Task<OkResult> Post([FromBody]Update update)
+        public async Task<StatusCodeResult> Post([FromBody]Update update)
         {
-            if (update == null) 
-                return Ok();
+            if (update == null)
+            {
+                return StatusCode(204);               //Опять пустые запросы шлешь, ШАЛУН?!
+            }
+            if (Bot.Client == null)
+            {
+                return StatusCode(414);               //Дурень! Ты опять на те же грабли наступаешь? Бот не инициализирован, как и его поля!!!
+            }
             var message = update.Message;
             if (message?.Type == MessageType.Text)
             {
-                await client.SendTextMessageAsync(message.Chat.Id, message.Text);
+                await Bot.Client.SendTextMessageAsync(message.Chat.Id, message.Text);
             }
-            return Ok();
+            return StatusCode(200);                   //GG, все прошло гладко!
         }
 
         [HttpGet]
         public string Get()
         {
-            return "Its ok!";
+            return "It's so empty here... Just like in my pocket and soul.";
         }
     }
 }

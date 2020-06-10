@@ -17,6 +17,7 @@ namespace MyTelegramBot
     {
         public static void Main(string[] args)
         {
+            Bot.Startup();
             CreateHostBuilder(args).Build().Run();
         }
 
