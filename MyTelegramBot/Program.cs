@@ -18,8 +18,6 @@ namespace MyTelegramBot
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
-            var client = new TelegramBotClient("1283606192:AAGi-nstALp5oLHm5LBUJwGCKDlgTqZNmvQ");
-            client.SetWebhookAsync("https://myresumetelegrambot.azurewebsites.net").Wait();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
