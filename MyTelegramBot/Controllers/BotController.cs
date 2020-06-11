@@ -22,7 +22,7 @@ namespace MyTelegramBot.Controllers
             }
             else if (Bot.Client == null)
             {
-                return StatusCode(414);               //Дурень! Ты опять на те же грабли наступаешь? Бот не инициализирован, как и его поля!!!
+                return StatusCode(500);               //Дурень! Ты опять на те же грабли наступаешь? Бот не инициализирован, как и его поля!!!
             }
 
             if(update.Message.Type != MessageType.Text)
@@ -30,10 +30,29 @@ namespace MyTelegramBot.Controllers
                 await Bot.Client.SendTextMessageAsync(update.Message.Chat.Id, Bot.NotTextMessage);
                 Bot.SendAvailableCommands(update.Message.Chat.Id);
             }
-
-            if (update.Message.Type == MessageType.Text)
+            else if (update.Message.Type == MessageType.Text)
             {
-                await Bot.Client.SendTextMessageAsync(update.Message.Chat.Id, update.Message.Text);
+                if (update.Message.Text[0] != ':' && update.Message.Text[update.Message.Text.Length - 1] != ':')
+                {
+                    switch (update.Message.Text)
+                    {
+                        case "/start": await Bot.Client.SendTextMessageAsync(update.Message.Chat.Id, Bot.StartMessage);
+                                       Bot.SendAvailableCommands(update.Message.Chat.Id); break;
+                        case "/about_me": break;
+                        case "/work_places": break;
+                        case "/achievements": break;
+                        case "/skills": break;
+                        case "/portfolio": break;
+                        case "/contacts": break;
+                        case "/help": Bot.SendAvailableCommands(update.Message.Chat.Id); break;
+                        default: await Bot.Client.SendTextMessageAsync(update.Message.Chat.Id, Bot.NotFoundAnswerMessage); break;
+                    }
+                }
+                else
+                {
+                    await Bot.Client.SendTextMessageAsync(update.Message.Chat.Id, Bot.NotFoundAnswerMessage);
+                }
+
             }
             return StatusCode(200);                   //GG, все прошло гладко!
         }
