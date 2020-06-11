@@ -20,9 +20,15 @@ namespace MyTelegramBot.Controllers
             {
                 return StatusCode(204);               //Опять пустые запросы шлешь, ШАЛУН?!
             }
-            if (Bot.Client == null)
+            else if (Bot.Client == null)
             {
                 return StatusCode(414);               //Дурень! Ты опять на те же грабли наступаешь? Бот не инициализирован, как и его поля!!!
+            }
+
+            if(update.Message.Type != MessageType.Text)
+            {
+                await Bot.Client.SendTextMessageAsync(update.Message.Chat.Id, Bot.NotTextMessage);
+                Bot.SendAvailableCommands(update.Message.Chat.Id);
             }
 
             if (update.Message.Type == MessageType.Text)
