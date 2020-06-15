@@ -40,7 +40,7 @@ namespace MyTelegramBot
                                       "●  Пишу код восновном в ООП стиле (если это возможно), владею базовыми паттернами ООП. Есть опыт роботы с библиотекой Qt на С++.\n" +
                                       "●  Владею азами SQL, работал с MySQL. (Хватит мозгов не добавлять в очередь - DELETE FROM \"table_name\" * ";
 
-        public static string Portfolio = "Вот ссылка на мой Github: https://github.com/Gameluser?tab=repositories";
+        public static string Portfolio = "Вот ссылка на мой Github: https://github.com/Artem-IDA";
         public static string Contacts = "Тел.: 050-740-91-51 (Vodafone) \n" +
                                         "Почта : artem-soroka-2013@ukr.net \n" +
                                         "Telegram : @Artem_IDA, https://t.me/Artem_IDA \n" +
