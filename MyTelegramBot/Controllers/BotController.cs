@@ -38,12 +38,12 @@ namespace MyTelegramBot.Controllers
                     {
                         case "/start": await Bot.Client.SendTextMessageAsync(update.Message.Chat.Id, Bot.StartMessage);
                                        Bot.SendAvailableCommands(update.Message.Chat.Id); break;
-                        case "/about_me": break;
-                        case "/work_places": break;
-                        case "/achievements": break;
-                        case "/skills": break;
-                        case "/portfolio": break;
-                        case "/contacts": break;
+                        case "/about_me": await Bot.Client.SendTextMessageAsync(update.Message.Chat.Id, Bot.About_me); break;
+                        case "/work_places": await Bot.Client.SendTextMessageAsync(update.Message.Chat.Id, Bot.Work_places); break;
+                        case "/achievements": await Bot.Client.SendTextMessageAsync(update.Message.Chat.Id, Bot.Achievements); break;
+                        case "/skills": await Bot.Client.SendTextMessageAsync(update.Message.Chat.Id, Bot.Skills); break;
+                        case "/portfolio": await Bot.Client.SendTextMessageAsync(update.Message.Chat.Id, Bot.Portfolio); break;
+                        case "/contacts": await Bot.Client.SendTextMessageAsync(update.Message.Chat.Id, Bot.Contacts); break;
                         case "/help": Bot.SendAvailableCommands(update.Message.Chat.Id); break;
                         default: await Bot.Client.SendTextMessageAsync(update.Message.Chat.Id, Bot.NotFoundAnswerMessage); break;
                     }
